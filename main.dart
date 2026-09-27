@@ -1,64 +1,65 @@
 void main() {
-  // 1. Tipe Data Dasar (Udah eksplisit, nggak pake var lagi)
-  String namaPart = 'Kampas Rem Muka';
-  int stokBarang = 12;
-  double hargaSatuan = 45000.0;
-  bool isReady = true;
+  // data pesanan pelanggan laundry
+  String namaPelanggan = 'Reyhan';
+  int beratBaju = 5; 
+  double diskon = 0.15; 
+  bool diantarKeKos = true;
 
-  // 2. Kunci-kuncian variabel (const, final, late)
-  const String namaBengkel = 'Bengkel Ngabers Jaya'; // Fix dari awal coding
-  final String idMekanik = 'MKN-001'; // Fix pas di-run
-  late String nomorAntrean; // Disiapin dulu, diisinya nanti
+  print(namaPelanggan);
+  print(beratBaju);
+  print(diskon);
+  print(diantarKeKos);
+  
+  // coba gabung pake teks sama variabel pake dolar
+  print('Pesanan laundry atas nama $namaPelanggan, seberat $beratBaju kg');
 
-  // Nah ini contoh ngisi variabel late pas pelanggan dateng
-  nomorAntrean = 'ANT-015';
+  // ini tipe data (?) yg boleh kosong (dikasih tanda tanya)
+  String? requestPewangi = 'Pewangi rasa lavender, banyakan dikit';
+  print(requestPewangi);
+  requestPewangi = null; // eh tiba-tiba orangnya ganti pikiran atau lupa
+  print(requestPewangi);
 
-  // 3. Null Safety buat ngakalin data kosong
-  String? catatanPelanggan; // Sengaja dibiarin null, misal orangnya buru-buru
-  // Kalau null, otomatis pake teks yang di sebelah kanan (??)
-  String instruksiMekanik = catatanPelanggan ?? 'Cek standar aja ngab';
+  // pakai tanda tanya dua (??) buat ngasih teks default kalo datanya null
+  String hasilPewangi = requestPewangi ?? 'Pewangi standar laundry';
+  print(hasilPewangi);
 
-  // 4. Itung-itungan dasar
-  int jumlahBeli = 2;
-  double biayaJasa = 35000.0;
-  // Total = (45rb x 2) + 35rb
-  double grandTotal = (hargaSatuan * jumlahBeli) + biayaJasa;
+  // late disiapin dulu variabelnya tapi diisinya nanti pas cucian kelar
+  late String statusCucian;
+  statusCucian = 'Siap Diambil';
+  print(statusCucian);
 
-  // 5. String Interpolation (Nyelipin variabel pake $)
-  print('=== WELCOME TO $namaBengkel ===');
-  print('No: $nomorAntrean | Mekanik: $idMekanik');
-  print('Part: $namaPart (Sisa stok: $stokBarang)');
-  // Pake if-else singkat di dalem string
-  print('Status Barang: ${isReady ? "Aman" : "Kosong bro"}');
-  print('Catatan Servis: $instruksiMekanik');
-  print('Total Bayar: Rp $grandTotal\n');
+  // pake final dan const biar datanya paten ga bisa diubah
+  final String noResi = 'JYL-2026-09';
+  print(noResi);
+  const String namaLaundry = 'Jaya Laundry';
+  print(namaLaundry.toUpperCase()); // dicetak pake huruf gede semua
 
-  // 6. List (Bikin daftar berurutan)
-  List<String> checklistServis = ['Ganti Oli', 'Bersihin Karbu', 'Cek Rantai'];
-  // Ada request tambahan nih dari pelanggan, tinggal di-add
-  checklistServis.add('Cek Tekanan Ban'); 
-  print('List yang harus dikerjain: $checklistServis');
+  // hitungan dasar buat nentuin total bayar
+  int hargaPerKg = 6000;
+  int biayaAntar = 5000;
+  print((beratBaju * hargaPerKg) + biayaAntar); // langsung dihitung pas di-print
 
-  // 7. Set (Biar datanya nggak ada yang duplikat)
-  Set<String> brandDiterima = {'Honda', 'Yamaha', 'Suzuki'};
-  brandDiterima.add('Honda'); // Sengaja dimasukin lagi buat ngetes
-  brandDiterima.add('Kawasaki');
-  // Pas di-print, 'Honda' tetep ada satu. Keren kan?
-  print('Brand yang bisa diservis: $brandDiterima\n');
+  // bikin list jenis layanan
+  List<String> jenisLayanan = [
+    'Cuci Basah',
+    'Cuci Kering',
+    'Setrika',
+  ];
+  jenisLayanan.add('Lipat Rapi'); // nambahin layanan baru 
+  print(jenisLayanan);
 
-  // 8. Map (Bungkus data nota jadi format key-value)
-  // Value-nya pake dynamic biar bisa nampung huruf, angka, sama boolean barengan
+  //  buat jenis bahan baju, datanya ga boleh sama
+  Set<String> bahanBaju = {'Katun', 'Jeans', 'Katun'};
+  print(bahanBaju); // Katun yang kembar otomatis cuma kecetak satu
+
+  // pake map biar bisa nyimpen data struk atau nota
   Map<String, dynamic> dataNota = {
-    'idNota': 'INV-9908',
-    'barang': namaPart,
-    'qty': jumlahBeli,
-    'totalRp': grandTotal,
-    'udahLunas': true,
+    'NomorResi': 'JYL-2026-09',
+    'NamaPemesan': 'Reyhan',
+    'TotalKg': 5,
+    'TotalBayar': 35000.00,
+    'TipePewangi': 'Standar',
+    'MemberAktif': true,
   };
-
-  print('=== DATA NOTA BUAT KE DATABASE ===');
-  print('ID Nota : ${dataNota['idNota']}');
-  print('Detail  : ${dataNota['barang']} (x${dataNota['qty']})');
-  print('Total   : Rp ${dataNota['totalRp']}');
-  print('Lunas?  : ${dataNota['udahLunas']}');
+  print(dataNota);
 }
