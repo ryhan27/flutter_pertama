@@ -7,7 +7,7 @@ void main() {
 
   // 2. Kunci-kuncian variabel (const, final, late)
   const String namaBengkel = 'Bengkel Ngabers Jaya'; // Fix dari awal coding
-  final String idMekanik = 'MEK-001'; // Fix pas di-run
+  final String idMekanik = 'MKN-001'; // Fix pas di-run
   late String nomorAntrean; // Disiapin dulu, diisinya nanti
 
   // Nah ini contoh ngisi variabel late pas pelanggan dateng
